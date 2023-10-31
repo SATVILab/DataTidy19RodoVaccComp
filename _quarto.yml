@@ -1,6 +1,6 @@
 project:
   type: website
-  output-dir: _site
+  output-dir: _tmp/projr/v1.0.0/_site
   render:
   - index.qmd
   - save_old_processed.qmd

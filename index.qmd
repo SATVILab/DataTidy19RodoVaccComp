@@ -109,3 +109,17 @@ write.csv(
   path_save_vacc
 )
 ```
+
+Check that the processed data matches old processed data:
+
+```{r}
+load(
+  projr::projr_path_get(
+    "data-raw", "processed_data", "join17IncITbl.rda"
+    )
+)
+old_data <- join17IncITbl
+load("data/join17IncITbl.rda")
+new_data <- join17IncITbl
+stopifnot(identical(new_data, old_data))
+```
