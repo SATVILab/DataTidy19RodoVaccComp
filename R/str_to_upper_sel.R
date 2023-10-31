@@ -10,8 +10,10 @@
 #' @return A character that is capitalised if it not in vec1,
 #' and is not capitalised if it is in vec1.
 
-str_to_upper_sel_elem = function( x, vec1 ){
-  if( !( x %in% vec1 ) ) return( str_to_upper( x ) )
+str_to_upper_sel_elem <- function(x, vec1) {
+  if (!(x %in% vec1)) {
+    return(str_to_upper(x))
+  }
   x
 }
 
@@ -25,15 +27,15 @@ str_to_upper_sel_elem = function( x, vec1 ){
 #' part of x is compared
 #' @return A character string.
 #' @examples
-#' str_to_upper_sel( "abc", NULL )
-#' str_to_upper_sel( "abc", c( "b", "c" ) )
+#' str_to_upper_sel("abc", NULL)
+#' str_to_upper_sel("abc", c("b", "c"))
 #' @export
 
-str_to_upper_sel_string = function( x, vec1 ){
-  plyr::laply( str_split( x, "", simplify = TRUE ), function( y ){
-    str_to_upper_sel_elem( y, vec1 )
-  } ) %>%
-    str_c( collapse = "" )
+str_to_upper_sel_string <- function(x, vec1) {
+  plyr::laply(str_split(x, "", simplify = TRUE), function(y) {
+    str_to_upper_sel_elem(y, vec1)
+  }) %>%
+    str_c(collapse = "")
 }
 
 #' Capitalise all letters in a string except some using rename.
@@ -45,6 +47,6 @@ str_to_upper_sel_string = function( x, vec1 ){
 #' @param vec1 character vector. Character vector of characters
 #' to not capitalise.
 #' @export
-str_to_upper_sel = function( x, vec1 ){
-  plyr::laply( x, function(x) str_to_upper_sel_string( x, vec1 ) )
+str_to_upper_sel <- function(x, vec1) {
+  plyr::laply(x, function(x) str_to_upper_sel_string(x, vec1))
 }

@@ -1,5 +1,9 @@
 project:
   type: website
+  output-dir: _tmp/projr/v0.0.0-1/_site
+  render:
+  - index.qmd
+  - save_old_processed.qmd
 website:
   title: Processing data for Rodo (2019) TB vaccine candidate comparison paper
   navbar:
@@ -9,5 +13,5 @@ website:
 format:
   html:
     theme: cosmo
-    toc: yes
+    toc: true
 

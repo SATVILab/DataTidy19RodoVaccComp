@@ -6,3 +6,16 @@
 
 ^LICENSE\.md$
 ^README\.Rmd$
+# Start of projr section: do not edit by hand (until `# End of projr section`)
+^_data_raw/
+^_data_raw$
+^_tmp/
+^_tmp$
+^_output/
+^_output$
+^_archive/
+^_archive$
+^_site/
+^_site$
+# End of projr section
+

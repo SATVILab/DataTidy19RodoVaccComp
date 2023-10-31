@@ -5,3 +5,14 @@
 .Ruserdata
 _projr-local.yml
 
+# Start of projr section: do not edit by hand (until `# End of projr section`)
+_data_raw/**
+_tmp/**
+_output/**
+_archive/**
+_site/**
+# End of projr section
+
+
+/.quarto/
+

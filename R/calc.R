@@ -5,7 +5,7 @@
 #'
 #' @param x vector.
 #' @export
-calcLU = function(x) length( unique( x ) )
+calcLU <- function(x) length(unique(x))
 
 #' Calculate baseline-subtracted response.
 #'
@@ -14,11 +14,12 @@ calcLU = function(x) length( unique( x ) )
 #' @return A dataframe with either that individual's day zero response subtracted from all responses,
 #' or the median response at day for that individual's group subtracted from all responses.
 #' @export
-calcSub = function( dataTbl ){
+calcSub <- function(dataTbl) {
   # dataTbl %<>% arrange( timePoint )
 
-  if( dataTbl$timePoint[1] == 0 ) return( dataTbl %<>% mutate( resp = resp - resp[1] ) )
+  if (dataTbl$timePoint[1] == 0) {
+    return(dataTbl %<>% mutate(resp = resp - resp[1]))
+  }
 
-  dataTbl %>% mutate( resp = resp - med )
+  dataTbl %>% mutate(resp = resp - med)
 }
-

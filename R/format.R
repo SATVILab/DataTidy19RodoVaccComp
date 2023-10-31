@@ -21,30 +21,29 @@
 #' @export
 
 
-convVaccNameToInteger = function( vaccVec ){
-
+convVaccNameToInteger <- function(vaccVec) {
   ### CONVERSION LOOP
-  for (i in 1 : length( vaccVec ) ){
-    currVac = vaccVec[i]
-    if (currVac == '402'){
-      vaccVec[i] = 1
-    } else if (currVac == 'H56'){
-      vaccVec[i] = 2
-    } else if (currVac == 'GSK.M72'){
-      vaccVec[i] = 3
-    } else if (currVac == 'MVA85A'){
-      vaccVec[i] = 4
-    } else if (currVac == 'H1'){
-      vaccVec[i] = 5
-    } else if (currVac == 'BCG'){
-      vaccVec[i] = 6
+  for (i in 1:length(vaccVec)) {
+    currVac <- vaccVec[i]
+    if (currVac == "402") {
+      vaccVec[i] <- 1
+    } else if (currVac == "H56") {
+      vaccVec[i] <- 2
+    } else if (currVac == "GSK.M72") {
+      vaccVec[i] <- 3
+    } else if (currVac == "MVA85A") {
+      vaccVec[i] <- 4
+    } else if (currVac == "H1") {
+      vaccVec[i] <- 5
+    } else if (currVac == "BCG") {
+      vaccVec[i] <- 6
     } else {
-      stop('Unknown vaccine in Main table')
+      stop("Unknown vaccine in Main table")
     }
   }
 
   ### OUTPUT
-  return( vaccVec )
+  return(vaccVec)
 }
 
 #' Convert protocol name to assigned integer.
@@ -72,32 +71,31 @@ convVaccNameToInteger = function( vaccVec ){
 #' @return character vector.
 #' @export
 
-convProtNameToInteger = function( protVec ){
-
-  for (i in 1 : length( protVec ) ){ #loop over observations
-    currProt = protVec[i] #current protocol
-    if (currProt == '402.003'){
-      protVec[i] = 1
-    } else if (currProt == '402.032'){
-      protVec[i] = 2
-    } else if (currProt == 'GSK.010'){
-      protVec[i] = 3
-    } else if (currProt == 'GSK.012'){
-      protVec[i] = 4
-    } else if (currProt == 'MVA.008'){
-      protVec[i] = 5
-    } else if (currProt == 'MVA.011'){
-      protVec[i] = 6
-    } else if (currProt == 'THYB-04'){
-      protVec[i] = 7
-    } else if (currProt == 'TBRU'){
-      protVec[i] = 8
+convProtNameToInteger <- function(protVec) {
+  for (i in 1:length(protVec)) { # loop over observations
+    currProt <- protVec[i] # current protocol
+    if (currProt == "402.003") {
+      protVec[i] <- 1
+    } else if (currProt == "402.032") {
+      protVec[i] <- 2
+    } else if (currProt == "GSK.010") {
+      protVec[i] <- 3
+    } else if (currProt == "GSK.012") {
+      protVec[i] <- 4
+    } else if (currProt == "MVA.008") {
+      protVec[i] <- 5
+    } else if (currProt == "MVA.011") {
+      protVec[i] <- 6
+    } else if (currProt == "THYB-04") {
+      protVec[i] <- 7
+    } else if (currProt == "TBRU") {
+      protVec[i] <- 8
     } else {
-      stop('Unknown protocol in Main table')
+      stop("Unknown protocol in Main table")
     }
   }
 
-  return( protVec )
+  return(protVec)
 }
 
 #' Replace cytokine combination positivity indicator.
@@ -124,55 +122,51 @@ convProtNameToInteger = function( protVec ){
 #' having the chosen cytokine positivity indicators.
 #' @export
 
-replaceCytPosIndicator = function( dataTibble, firstMultCytIndex, posPattern,
-  negPattern, posRep, negRep, alphaNumericOrigSign = FALSE,
-  signLocVec = NULL ){
-
+replaceCytPosIndicator <- function(
+    dataTibble, firstMultCytIndex, posPattern,
+    negPattern, posRep, negRep, alphaNumericOrigSign = FALSE,
+    signLocVec = NULL) {
   ### PRELIMINARIES
-  nCol = ncol( dataTibble )
-  origCytNameVec = tbl_vars( dataTibble )[ firstMultCytIndex : nCol  ]
-  cytNameVec = tbl_vars( dataTibble )[ firstMultCytIndex : nCol  ]
+  nCol <- ncol(dataTibble)
+  origCytNameVec <- tbl_vars(dataTibble)[firstMultCytIndex:nCol]
+  cytNameVec <- tbl_vars(dataTibble)[firstMultCytIndex:nCol]
 
-  if ( alphaNumericOrigSign == FALSE ){
-
+  if (alphaNumericOrigSign == FALSE) {
     ### GET FORM TO REPLACE WITH
-    cytNameVec = str_replace_all( cytNameVec, pattern = posPattern, replacement = posRep )
-    cytNameVec = str_replace_all( cytNameVec, pattern = negPattern, replacement = negRep )
-
-  } else if ( alphaNumericOrigSign == TRUE ){
-
-    for ( i in 1: length( origCytNameVec ) ){
-
+    cytNameVec <- str_replace_all(cytNameVec, pattern = posPattern, replacement = posRep)
+    cytNameVec <- str_replace_all(cytNameVec, pattern = negPattern, replacement = negRep)
+  } else if (alphaNumericOrigSign == TRUE) {
+    for (i in 1:length(origCytNameVec)) {
       # current cytCombo
-      currCyt = origCytNameVec[ i ]
+      currCyt <- origCytNameVec[i]
 
       ### SIGN CONVERSION
 
-      #signs
-      currSignVec = str_sub( currCyt, signLocVec,signLocVec )
+      # signs
+      currSignVec <- str_sub(currCyt, signLocVec, signLocVec)
 
-      for ( j in 1 : length( currSignVec ) ){
-        if ( currSignVec[ j ] == posPattern ){
-          str_sub( currCyt, signLocVec[ j ], signLocVec[ j ] ) = posRep
-        } else if ( currSignVec[ j ] == negPattern ){
-          str_sub( currCyt, signLocVec[ j ], signLocVec[ j ] ) = negRep
+      for (j in 1:length(currSignVec)) {
+        if (currSignVec[j] == posPattern) {
+          str_sub(currCyt, signLocVec[j], signLocVec[j]) <- posRep
+        } else if (currSignVec[j] == negPattern) {
+          str_sub(currCyt, signLocVec[j], signLocVec[j]) <- negRep
         }
       }
 
       # save current cytName
-      cytNameVec[i] = currCyt
+      cytNameVec[i] <- currCyt
     }
   }
 
   ### CHANGE NAMES IN TABLE
 
-  renameText = str_sub( str_c( "`", cytNameVec, "` = `", origCytNameVec, "`, ", sep = "", collapse = "" ), end = -3L )
-  parseText = str_c( "dataTibble %<>% rename(", renameText, ")")
-  eval( parse( text = parseText ) )
+  renameText <- str_sub(str_c("`", cytNameVec, "` = `", origCytNameVec, "`, ", sep = "", collapse = ""), end = -3L)
+  parseText <- str_c("dataTibble %<>% rename(", renameText, ")")
+  eval(parse(text = parseText))
 
   ### OUTPUT
 
-  return( dataTibble )
+  return(dataTibble)
 }
 
 #' Change order of cytokines in cytokine combination labels.
@@ -202,57 +196,54 @@ replaceCytPosIndicator = function( dataTibble, firstMultCytIndex, posPattern,
 #' in the cytokine combinations changed.
 #' @export
 
-changeCytOrder = function( dataTibble, firstCytColIndex, firstCytNameLoc, signLocVec,
-  orderLocVec, cdPresent = TRUE ){
-
-  nCol = ncol( dataTibble )
-  cytNameVec = tbl_vars( dataTibble )[ firstCytColIndex:nCol ]
-  origCytNameVec = tbl_vars( dataTibble )[ firstCytColIndex:nCol ]
+changeCytOrder <- function(
+    dataTibble, firstCytColIndex, firstCytNameLoc, signLocVec,
+    orderLocVec, cdPresent = TRUE) {
+  nCol <- ncol(dataTibble)
+  cytNameVec <- tbl_vars(dataTibble)[firstCytColIndex:nCol]
+  origCytNameVec <- tbl_vars(dataTibble)[firstCytColIndex:nCol]
 
   ### MANIPULATION
 
-  if ( cdPresent == TRUE ){
-    origPreCytStoreVec = str_sub( cytNameVec, end = firstCytNameLoc - 1)
-    cdTypeVec = ifelse( str_detect( origPreCytStoreVec, '4' ) == TRUE, 4, 8 )
-    cytNameVec = str_sub( cytNameVec, start = firstCytNameLoc )
-    signLocVec = signLocVec - firstCytNameLoc + 1
+  if (cdPresent == TRUE) {
+    origPreCytStoreVec <- str_sub(cytNameVec, end = firstCytNameLoc - 1)
+    cdTypeVec <- ifelse(str_detect(origPreCytStoreVec, "4") == TRUE, 4, 8)
+    cytNameVec <- str_sub(cytNameVec, start = firstCytNameLoc)
+    signLocVec <- signLocVec - firstCytNameLoc + 1
   }
 
   # convert posPattern to posRep and negPattern to negRep
 
-  for ( i in 1: length( cytNameVec ) ){
-
+  for (i in 1:length(cytNameVec)) {
     # current cytCombo
-    currCyt = cytNameVec[ i ]
+    currCyt <- cytNameVec[i]
 
     ### ORDER ADJUSTMENT
 
-    currCytStoreVec = rep( 'a', length( signLocVec ) )
-    currCytStoreVec[ 1 ] = str_sub( currCyt, start = 1, end = signLocVec[ 1 ] )
+    currCytStoreVec <- rep("a", length(signLocVec))
+    currCytStoreVec[1] <- str_sub(currCyt, start = 1, end = signLocVec[1])
 
-    for ( j in 2:length( signLocVec ) ){
-      currCytStoreVec[j] = str_sub( currCyt, start = signLocVec[ j - 1 ] + 1, end = signLocVec[ j ] )
+    for (j in 2:length(signLocVec)) {
+      currCytStoreVec[j] <- str_sub(currCyt, start = signLocVec[j - 1] + 1, end = signLocVec[j])
     }
 
-    newCytName = ""
+    newCytName <- ""
 
-    for ( j in 1:length( signLocVec ) ){
-      newAddindex = which( orderLocVec == j )
-      newCytName = str_c( newCytName, currCytStoreVec[ newAddindex ] )
+    for (j in 1:length(signLocVec)) {
+      newAddindex <- which(orderLocVec == j)
+      newCytName <- str_c(newCytName, currCytStoreVec[newAddindex])
     }
 
     ### FINAL EDITING
 
-    cytNameVec[i] = str_c( "CD", cdTypeVec[i], newCytName, sep = "")
-
+    cytNameVec[i] <- str_c("CD", cdTypeVec[i], newCytName, sep = "")
   }
 
   ### CHANGE NAMES IN TABLE
 
-  midText = str_sub( str_c( "`", cytNameVec, "` = `", origCytNameVec, "`, ", sep = "", collapse = "" ), end = -3L )
-  parseText = str_c( "dataTibble %<>% rename(", midText, ")")
-  eval( parse( text = parseText ) )
-
+  midText <- str_sub(str_c("`", cytNameVec, "` = `", origCytNameVec, "`, ", sep = "", collapse = ""), end = -3L)
+  parseText <- str_c("dataTibble %<>% rename(", midText, ")")
+  eval(parse(text = parseText))
 }
 
 #' Remove the non-alphanumeric entries in specified columns.
@@ -267,38 +258,36 @@ changeCytOrder = function( dataTibble, firstCytColIndex, firstCytNameLoc, signLo
 #' non-alphanumeric entries must be removed.
 #' @export
 
-removeNonANEntries = function( dataTibble, columnNameVec ){
+removeNonANEntries <- function(dataTibble, columnNameVec) {
+  for (i in 1:length(columnNameVec)) {
+    currentColumnName <- columnNameVec[i]
+    parseText <- str_c("currentString = dataTibble$", currentColumnName)
+    eval(parse(text = parseText))
 
-  for( i in 1:length( columnNameVec ) ){
+    upperLettersSearchVec <- str_to_upper(letters)
+    lettersIndexVec <- as.character(1:26)
+    numbersSearchVec <- as.character(0:9)
+    numbersIndexVec <- as.character(1:10)
 
-    currentColumnName = columnNameVec[ i ]
-    parseText = str_c( "currentString = dataTibble$", currentColumnName)
-    eval( parse( text = parseText ) )
+    upperList <- str_locate_all(currentString, upperLettersSearchVec)
+    midText <- str_sub(str_c("upperList[[ ", lettersIndexVec, " ]][ , 1 ], ", collapse = ""), end = -3L)
+    parseText <- str_c("lettersLocVec = c( ", midText, " )")
+    eval(parse(text = parseText))
 
-    upperLettersSearchVec = str_to_upper( letters )
-    lettersIndexVec = as.character( 1:26 )
-    numbersSearchVec = as.character( 0: 9 )
-    numbersIndexVec = as.character( 1:10 )
+    numberList <- str_locate_all(currentString, numbersSearchVec)
+    midText <- str_sub(str_c("numberList[[ ", numbersIndexVec, " ]][ , 1 ], ", collapse = ""), end = -3L)
+    parseText <- str_c("numbersLocVec = c( ", midText, " )")
+    eval(parse(text = parseText))
 
-    upperList = str_locate_all( currentString , upperLettersSearchVec )
-    midText = str_sub( str_c( "upperList[[ ", lettersIndexVec, " ]][ , 1 ], ", collapse = "" ), end = -3L )
-    parseText = str_c( "lettersLocVec = c( ", midText, " )")
-    eval( parse( text = parseText ) )
+    anLocVec <- as.numeric(sort(c(lettersLocVec, numbersLocVec)))
+    replacementString <- str_c(str_sub(currentString, start = anLocVec, end = anLocVec), sep = "", collapse = "")
 
-    numberList = str_locate_all( currentString, numbersSearchVec )
-    midText = str_sub( str_c( "numberList[[ ", numbersIndexVec, " ]][ , 1 ], ", collapse = "" ), end = -3L )
-    parseText = str_c( "numbersLocVec = c( ", midText, " )")
-    eval( parse( text = parseText ) )
-
-    anLocVec = as.numeric( sort( c( lettersLocVec, numbersLocVec ) ) )
-    replacementString = str_c( str_sub( currentString, start = anLocVec, end = anLocVec ), sep = "", collapse = "" )
-
-    parseText = str_c( "dataTibble$", currentColumnName, " = replacementString" )
-    eval( parse( text = parseText ) )
+    parseText <- str_c("dataTibble$", currentColumnName, " = replacementString")
+    eval(parse(text = parseText))
   }
 
   # OUTPUT
-  return( dataTibble )
+  return(dataTibble)
 }
 
 #' Compare expected to actual column entries for BCG source data.
@@ -317,34 +306,32 @@ removeNonANEntries = function( dataTibble, columnNameVec ){
 #' \code{compColumnName}.
 #' @export
 
-compToFullName = function( dataTibble, compColumnName, mainColumnName ){
-
+compToFullName <- function(dataTibble, compColumnName, mainColumnName) {
   ### PRELIMINARIES
 
-  compVec = eval( parse( text = str_c( 'dataTibble$', compColumnName ) ) ) #comparison vector
-  mainVec = eval( parse( text = str_c( 'dataTibble$', mainColumnName ) ) ) #comparison vector
+  compVec <- eval(parse(text = str_c("dataTibble$", compColumnName))) # comparison vector
+  mainVec <- eval(parse(text = str_c("dataTibble$", mainColumnName))) # comparison vector
 
-  compValVec = unique( compVec ) #unique values of comparison vector
+  compValVec <- unique(compVec) # unique values of comparison vector
 
-  nameText = str_sub( str_c( compValVec, " = NULL, ", collapse = "" ), end = -3L )
-  parseText = str_c( "nonMatchingRowsList = list( ", nameText, " )")
-  eval( parse( text = parseText ) )
+  nameText <- str_sub(str_c(compValVec, " = NULL, ", collapse = ""), end = -3L)
+  parseText <- str_c("nonMatchingRowsList = list( ", nameText, " )")
+  eval(parse(text = parseText))
 
-  for( i in 1:length( compValVec ) ){
+  for (i in 1:length(compValVec)) {
+    currVal <- compValVec[i]
+    vec1 <- str_detect(compVec, c(currVal)) * 1
+    vec2 <- str_detect(mainVec, c(currVal)) * 1
+    nonMatchingRowsVec <- which(vec1 != vec2)
 
-    currVal = compValVec[ i ]
-    vec1 = str_detect( compVec, c( currVal ) )  * 1
-    vec2 = str_detect( mainVec, c( currVal ) ) * 1
-    nonMatchingRowsVec = which( vec1 != vec2 )
-
-    if( length( nonMatchingRowsVec ) > 0 ){
-      midText = str_sub( str_c( nonMatchingRowsVec, ", ", sep = "", collapse = "" ), end = -3L )
-      parseText = str_c( "nonMatchingRowsList$", currVal, " = c( ", midText, " )" )
-      eval( parse( text = parseText ) )
+    if (length(nonMatchingRowsVec) > 0) {
+      midText <- str_sub(str_c(nonMatchingRowsVec, ", ", sep = "", collapse = ""), end = -3L)
+      parseText <- str_c("nonMatchingRowsList$", currVal, " = c( ", midText, " )")
+      eval(parse(text = parseText))
     }
   }
 
-  return( nonMatchingRowsList )
+  return(nonMatchingRowsList)
 }
 
 #' Converts the original timepoints in TBRU to days.
@@ -368,37 +355,33 @@ compToFullName = function( dataTibble, compColumnName, mainColumnName ){
 #' @export
 
 
-convTimePoint = function( studyDayVector ){
+convTimePoint <- function(studyDayVector) {
+  # PRELIMINARIES
+  nObs <- length(studyDayVector)
+  timePointVec <- rep(-1, length(studyDayVector))
 
-  #PRELIMINARIES
-  nObs = length( studyDayVector )
-  timePointVec = rep( -1, length( studyDayVector) )
-
-  #REPLACEMENT LOOP
-  for (i in 1:nObs ){
-
+  # REPLACEMENT LOOP
+  for (i in 1:nObs) {
     # PRELIMINARIES
 
-    currStudyDay = studyDayVector[i]
+    currStudyDay <- studyDayVector[i]
 
-    #REPLACEMENT LOOP
+    # REPLACEMENT LOOP
 
-    if ( currStudyDay == 'V08' ){
-      timePointVec[i] = 0
-    } else if ( currStudyDay == 'V13'){
-      timePointVec[i] = 21
-    } else if ( currStudyDay == 'V15' ){
-      timePointVec[i] = 35
-    } else if ( currStudyDay == 'V28'){
-      timePointVec[i] = 365
+    if (currStudyDay == "V08") {
+      timePointVec[i] <- 0
+    } else if (currStudyDay == "V13") {
+      timePointVec[i] <- 21
+    } else if (currStudyDay == "V15") {
+      timePointVec[i] <- 35
+    } else if (currStudyDay == "V28") {
+      timePointVec[i] <- 365
     }
-
-
   }
 
-  #OUTPUT
+  # OUTPUT
 
-  return( timePointVec )
+  return(timePointVec)
 }
 
 #' String convenience functions
@@ -413,27 +396,31 @@ NULL
 
 #' @rdname strConv
 #' @export
-editStr = function( str1, startLoc, endLoc ){
-  strStart = str_sub( str1, startLoc, endLoc - 1 )
-  strEnd =  str_sub( str1, endLoc, endLoc ) %>% str_to_lower()
-  strOut = str_c( strStart, strEnd )
-  return( strOut )
+editStr <- function(str1, startLoc, endLoc) {
+  strStart <- str_sub(str1, startLoc, endLoc - 1)
+  strEnd <- str_sub(str1, endLoc, endLoc) %>% str_to_lower()
+  strOut <- str_c(strStart, strEnd)
+  return(strOut)
 }
 
 #' @rdname strConv
 #' @export
-editNonANStr = function( str1, startLoc, endLoc ){
-  strStart = str_sub( str1, startLoc, endLoc - 1 )
-  strEnd =  str_sub( str1, endLoc, endLoc ) %>% repPosNegInd()
-  strOut = str_c( strStart, strEnd )
-  return( strOut )
+editNonANStr <- function(str1, startLoc, endLoc) {
+  strStart <- str_sub(str1, startLoc, endLoc - 1)
+  strEnd <- str_sub(str1, endLoc, endLoc) %>% repPosNegInd()
+  strOut <- str_c(strStart, strEnd)
+  return(strOut)
 }
 
 #' @rdname strConv
 #' @export
-repPosNegInd = function( str1 ){
-  if( str1 == "+" ) return( "p" )
-  if( str1 == "-" ) return( "n" )
+repPosNegInd <- function(str1) {
+  if (str1 == "+") {
+    return("p")
+  }
+  if (str1 == "-") {
+    return("n")
+  }
 }
 
 
@@ -448,9 +435,9 @@ repPosNegInd = function( str1 ){
 #' @return A function as described in the description.
 #' @export
 
-countFuncClosure = function(){
-  k = 0
-  function(){
+countFuncClosure <- function() {
+  k <- 0
+  function() {
     k <<- k + 1
     k
   }
@@ -463,14 +450,26 @@ countFuncClosure = function(){
 #' for the lOrigMainTbl.
 #'
 #' @export
-nameStim = function( x ){
-  x  = as.character( x )
-   laply( x, function( x ){
-     if( x == "1" ) return( "ag85b" )
-     if( x == "2" ) return( "NA" )
-     if( x == "3" ) return( "m72ppl" )
-     if( x == "4" ) return ( "ag85a" )
-     if( x == "5" ) return( "NA" )
-     if( x == "6" ) return( "NA" )
-   } )
+nameStim <- function(x) {
+  x <- as.character(x)
+  laply(x, function(x) {
+    if (x == "1") {
+      return("ag85b")
+    }
+    if (x == "2") {
+      return("NA")
+    }
+    if (x == "3") {
+      return("m72ppl")
+    }
+    if (x == "4") {
+      return("ag85a")
+    }
+    if (x == "5") {
+      return("NA")
+    }
+    if (x == "6") {
+      return("NA")
+    }
+  })
 }
