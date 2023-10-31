@@ -1023,7 +1023,7 @@
     },
     "projr": {
       "Package": "projr",
-      "Version": "0.0.9-6",
+      "Version": "0.0.9-7",
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
@@ -1031,7 +1031,7 @@
       "RemoteUsername": "SATVILab",
       "RemotePkgRef": "SATVILab/projr",
       "RemoteRef": "HEAD",
-      "RemoteSha": "8e45e2c5e77615591bfddcb6c290f04686d03f8d",
+      "RemoteSha": "eeaeb1120081f04be89df9b9906b3fc4a7c418e6",
       "Requirements": [
         "desc",
         "digest",
@@ -1043,7 +1043,7 @@
         "usethis",
         "yaml"
       ],
-      "Hash": "275bdae31b4504a58d643ac1cfb8a7f2"
+      "Hash": "9b853c2db1ce5ab6234afe000f21aa69"
     },
     "promises": {
       "Package": "promises",
