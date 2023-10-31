@@ -1,0 +1,8 @@
+^renv$
+^renv\.lock$
+^.*\.Rproj$
+^\.Rproj\.user$
+^_projr-local\.yml$
+
+^LICENSE\.md$
+^README\.Rmd$

@@ -1,0 +1,13 @@
+project:
+  type: website
+website:
+  title: Processing data for Rodo (2019) TB vaccine candidate comparison paper
+  navbar:
+    left:
+    - href: index.qmd
+      text: Home
+format:
+  html:
+    theme: cosmo
+    toc: yes
+
