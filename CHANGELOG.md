@@ -1,5 +1,8 @@
 # CHANGELOG
 
+- *Minor* (v1.3.0): Miguel Julio Rodo (12:15:31)
+  - Archive
+
 - *Minor* (v1.2.0): Miguel Julio Rodo (12:12:26)
   - Rebuild with new config and destinations
 
