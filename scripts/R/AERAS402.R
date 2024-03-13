@@ -5,8 +5,8 @@ currObjVec <- ls()
 
 # read in data
 fileLoc <- projr::projr_path_get(
-  "data-raw", "raw_data", "aeras402.xlsx"
-  )
+  "data-raw-public", "raw_data", "aeras402.xlsx"
+)
 aerasTbl <- as_tibble(read.xlsx(fileLoc))
 
 # Data Prep ---------------------------------------------------------------

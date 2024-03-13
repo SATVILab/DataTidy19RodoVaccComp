@@ -5,8 +5,8 @@ currObjVec <- ls()
 
 # read in data
 fileLoc <- projr::projr_path_get(
-  "data-raw", "raw_data", "main.xlsx"
-  )
+  "data-raw-public", "raw_data", "main.xlsx"
+)
 tbData <- as_tibble(read.xlsx(fileLoc, sheet = "Sheet 1"))
 
 # Data Preparation ------------------------------------------------

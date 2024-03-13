@@ -7,12 +7,14 @@ currObjVec <- ls()
 
 # read in data
 fileLoc <- projr::projr_path_get(
-  "data-raw", "raw_data", "h1.xlsx")
+  "data-raw-public", "raw_data", "h1.xlsx"
+)
 h1Tbl <- as_tibble(read.xlsx(fileLoc, sheet = "Sheet 1"))
 
 # table with info of which IDs are in group 1
 fileLoc <- projr::projr_path_get(
-  "data-raw", "raw_data", "h1-group_info.xlsx")
+  "data-raw-public", "raw_data", "h1-group_info.xlsx"
+)
 fTbl <- as_tibble(read.xlsx(fileLoc))
 
 # francesca's data

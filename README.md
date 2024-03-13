@@ -24,7 +24,7 @@ The processed data can be loaded as normal datasets from an R package.
 ## Reproducing
 
 The raw data are kept in the release `input` on GitHub, and must be
-saved to the `data-raw` directory (as specified in `_projr.yml`) to run
+saved to the `data-raw-public` directory (as specified in `_projr.yml`) to run
 the data.
 
 Then run `projr::projr_build_dev()` to rebuild the projects. The project

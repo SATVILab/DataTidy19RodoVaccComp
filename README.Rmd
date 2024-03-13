@@ -34,7 +34,7 @@ The processed data can be loaded as normal datasets from an R package.
 
 ## Reproducing
 
-The raw data are kept in the release `input` on GitHub, and must be saved to the `data-raw` directory (as specified in `_projr.yml`) to run the data.
+The raw data are kept in the release `input` on GitHub, and must be saved to the `data-raw-public` directory (as specified in `_projr.yml`) to run the data.
 
 Then run `projr::projr_build_dev()` to rebuild the projects.
 The project outputs will be saved to the `cache` directory (as specified in `_projr.yml`).
@@ -42,7 +42,7 @@ The project outputs will be saved to the `cache` directory (as specified in `_pr
 The schematic describes data processing by stage, specifying the outputs and processing files and providing details. 
 ```{r pressure, echo=FALSE, out.width = '100%', results = "asis"}
 knitr::include_graphics(
-  projr::projr_path_get("data-raw", "img", "Data_Prep_Flow.png")
+  projr::projr_path_get("data-raw-public", "img", "Data_Prep_Flow.png")
 )
 ```
 

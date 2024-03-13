@@ -2,20 +2,27 @@ build:
   github:
     archive:
       content:
-      - data-raw
-      - docs
+      - data-raw-public
       - output
       send:
         sync-approach: sync-using-deletion
         version-source: none
   osf:
-    archive:
+    Project19RodoVaccComp:
       content:
-      - data-raw
-      - docs
+      - data-raw-public
       - output
       path: DataTidy/archive
       id: fsq4b
+      send:
+        sync-approach: sync-using-deletion
+        version-source: none
+    Private:
+      content:
+      - data-raw-private
+      - docs
+      path: DataTidy/archive
+      id: gzt24
       send:
         sync-approach: sync-using-deletion
         version-source: none

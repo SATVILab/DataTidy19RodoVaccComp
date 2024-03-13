@@ -4,6 +4,7 @@
 .RData
 .Ruserdata
 _projr-local.yml
+SCRATCH.R
 
 # Start of projr section: do not edit by hand (until `# End of projr section`)
 _data_raw/**

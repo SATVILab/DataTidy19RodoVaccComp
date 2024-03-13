@@ -115,7 +115,7 @@ Check that the processed data matches old processed data:
 ```{r}
 load(
   projr::projr_path_get(
-    "data-raw", "processed_data", "join17IncITbl.rda"
+    "data-raw-public", "processed_data", "join17IncITbl.rda"
     )
 )
 old_data <- join17IncITbl

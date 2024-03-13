@@ -5,8 +5,8 @@ currObjVec <- ls()
 
 # read in data
 fileLoc <- projr::projr_path_get(
-  "data-raw", "raw_data", "bcg.xlsx"
-  )
+  "data-raw-public", "raw_data", "bcg.xlsx"
+)
 cd8Tbl <- as_tibble(read.xlsx(fileLoc, sheet = "CD8"))
 
 # Data Prep I ---------------------------------------------------------------

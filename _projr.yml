@@ -1,6 +1,8 @@
 directories:
-  data-raw:
-    path: _data_raw
+  data-raw-public:
+    path: _data_raw/public
+  data-raw-private:
+    path: _data_raw/private
   cache:
     path: _tmp
   output:
@@ -9,16 +11,22 @@ build:
   github:
     latest:
       content:
-      - data-raw
-      - docs
+      - data-raw-public
       - output
       structure: latest
   osf:
-    latest:
+    Project19RodoVaccComp:
       content:
-      - data-raw
-      - docs
-      - outut
+      - data-raw-public
+      - output
       path: DataTidy/latest
       structure: latest
       id: fsq4b
+    Private:
+      content:
+      - data-raw-private
+      - docs
+      path: DataTidy/latest
+      structure: latest
+      id: gzt24
+
