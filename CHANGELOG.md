@@ -1,5 +1,8 @@
 # CHANGELOG
 
+- *Minor* (v1.5.0): Miguel Julio Rodo (13:10:44)
+  - Add more raw data
+
 - *Minor* (v1.4.0): Miguel Julio Rodo (12:28:57)
   - Add old raw data, change processing script name and preserve produced `data/` entries
 
