@@ -1,0 +1,21 @@
+build:
+  github:
+    archive:
+      content:
+      - data-raw
+      - docs
+      - output
+      send:
+        sync-approach: sync-using-deletion
+        version-source: none
+  osf:
+    archive:
+      content:
+      - data-raw
+      - docs
+      - output
+      path: DataTidy/archive
+      id: fsq4b
+      send:
+        sync-approach: sync-using-deletion
+        version-source: none
