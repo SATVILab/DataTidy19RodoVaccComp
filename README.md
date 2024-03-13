@@ -24,8 +24,8 @@ The processed data can be loaded as normal datasets from an R package.
 ## Reproducing
 
 The raw data are kept in the release `input` on GitHub, and must be
-saved to the `data-raw-public` directory (as specified in `_projr.yml`) to run
-the data.
+saved to the `data-raw-public` directory (as specified in `_projr.yml`)
+to run the data.
 
 Then run `projr::projr_build_dev()` to rebuild the projects. The project
 outputs will be saved to the `cache` directory (as specified in
@@ -33,7 +33,7 @@ outputs will be saved to the `cache` directory (as specified in
 
 The schematic describes data processing by stage, specifying the outputs
 and processing files and providing details.
-<img src="_data_raw/img/Data_Prep_Flow.png" width="100%" />
+<img src="_data_raw/public/img/Data_Prep_Flow.png" width="100%" />
 
 ## Raw data
 
