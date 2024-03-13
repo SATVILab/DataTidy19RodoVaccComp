@@ -9,7 +9,7 @@ pkgPath <- system.file(package = "VaccCompData")
 # libraries
 # read in data
 fileLoc <- projr::projr_path_get(
-  "data-raw-public", "raw_data", "id93.xlsx"
+  "data-raw-public", "id93.xlsx"
 )
 idriTbl <- as_tibble(read.xlsx(fileLoc, sheet = "Sheet 1"))
 

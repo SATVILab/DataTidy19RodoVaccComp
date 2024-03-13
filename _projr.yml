@@ -7,6 +7,8 @@ directories:
     path: _tmp
   output:
     path: _output
+  docs:
+    path: _site
 build:
   github:
     latest:
@@ -29,3 +31,4 @@ build:
       path: DataTidy/latest
       structure: latest
       id: gzt24
+

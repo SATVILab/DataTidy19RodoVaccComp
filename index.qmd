@@ -8,7 +8,7 @@ currObjVec = ls()
 
 # find library containing raw data
 dataprepPath = projr::projr_dir_get(
-  "project", "scripts", "R",
+  "project", "scripts", "R"
 )
 dirFunc = function(x) paste0(dataprepPath, "/", x)
 devtools::load_all()
@@ -115,7 +115,7 @@ Check that the processed data matches old processed data:
 ```{r}
 load(
   projr::projr_path_get(
-    "data-raw-public", "processed_data", "join17IncITbl.rda"
+    "data-raw-public", "check", "join17IncITbl.rda"
     )
 )
 old_data <- join17IncITbl

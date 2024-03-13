@@ -5,7 +5,7 @@ currObjVec <- ls()
 
 # read in data
 fileLoc <- projr::projr_path_get(
-  "data-raw-public", "raw_data", "megapool.csv"
+  "data-raw-public", "megapool.csv"
 )
 megTbl <- as_tibble(read.csv(fileLoc))
 

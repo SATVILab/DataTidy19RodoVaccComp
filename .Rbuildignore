@@ -17,5 +17,9 @@
 ^_archive$
 ^_site/
 ^_site$
+^_data_raw/public/
+^_data_raw/public$
+^_data_raw/private/
+^_data_raw/private$
 # End of projr section
 

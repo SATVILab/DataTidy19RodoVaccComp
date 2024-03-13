@@ -8,7 +8,7 @@ pkgPath <- system.file(package = "VaccCompData")
 
 # read in data
 fileLoc <- projr::projr_path_get(
-  "data-raw-public", "raw_data", "bcg.xlsx"
+  "data-raw-public", "bcg.xlsx"
 )
 cd4Tbl <- as_tibble(read.xlsx(fileLoc, sheet = "CD4"))
 
