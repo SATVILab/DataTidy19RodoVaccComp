@@ -17,18 +17,24 @@ build:
       - output
       structure: latest
   osf:
-    Project19RodoVaccComp:
+    latest-public:
       content:
       - data-raw-public
       - output
       path: DataTidy/latest
       structure: latest
       id: fsq4b
-    Private:
+      send:
+        sync-approach: sync-using-deletion
+        version-source: none
+    latest-private:
       content:
       - data-raw-private
       - docs
       path: DataTidy/latest
       structure: latest
       id: gzt24
+      send:
+        sync-approach: sync-using-deletion
+        version-source: none
 

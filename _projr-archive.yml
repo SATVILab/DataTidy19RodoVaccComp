@@ -8,7 +8,7 @@ build:
         sync-approach: sync-using-deletion
         version-source: none
   osf:
-    Project19RodoVaccComp:
+    archive-public:
       content:
       - data-raw-public
       - output
@@ -17,7 +17,7 @@ build:
       send:
         sync-approach: sync-using-deletion
         version-source: none
-    Private:
+    archive-private:
       content:
       - data-raw-private
       - docs
