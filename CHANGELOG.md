@@ -1,5 +1,8 @@
 # CHANGELOG
 
+- *Minor* (v1.6.0): Miguel Julio Rodo (14:03:46)
+  - Rebuild with correct projr settings for uploading to OSF
+
 - *Minor* (v1.5.0): Miguel Julio Rodo (13:10:44)
   - Add more raw data
 
