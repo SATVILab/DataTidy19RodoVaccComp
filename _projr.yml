@@ -18,8 +18,10 @@ build:
     latest:
       content:
       - data-raw-public
-      - output
+      - output-public
       structure: latest
+      send:
+        version-source: none
   osf:
     latest-public:
       content:
@@ -28,6 +30,8 @@ build:
       path: DataTidy/latest
       structure: latest
       id: fsq4b
+      send:
+        version-source: none
     latest-private:
       content:
       - data-raw-private
@@ -37,4 +41,6 @@ build:
       path: DataTidy/latest
       structure: latest
       id: gzt24
+      send:
+        version-source: none
 
