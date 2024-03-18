@@ -1,5 +1,8 @@
 # CHANGELOG
 
+- *Minor* (v1.7.0): Miguel Julio Rodo (10:19:47)
+  - Collate unanonymised pids used
+
 - *Minor* (v1.6.0): Miguel Julio Rodo (14:03:46)
   - Rebuild with correct projr settings for uploading to OSF
 
