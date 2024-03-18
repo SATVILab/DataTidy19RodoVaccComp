@@ -3,10 +3,14 @@ directories:
     path: _data_raw/public
   data-raw-private:
     path: _data_raw/private
+  data-raw-other:
+    path: _data_raw/other
   cache:
     path: _tmp
-  output:
-    path: _output
+  output-private:
+    path: _output/private
+  output-public:
+    path: _output/public
   docs:
     path: _site
 build:
@@ -20,14 +24,16 @@ build:
     latest-public:
       content:
       - data-raw-public
-      - output
+      - output-public
       path: DataTidy/latest
       structure: latest
       id: fsq4b
     latest-private:
       content:
       - data-raw-private
+      - data-raw-other
       - docs
+      - output-private
       path: DataTidy/latest
       structure: latest
       id: gzt24

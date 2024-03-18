@@ -1,0 +1,466 @@
+---
+title: Anonymise data
+author: "Miguel Rodo"
+format:
+  html:
+    embed-resources: true
+--- 
+
+```{r setup, include = FALSE}
+library(tibble)
+```
+
+# `02_Feb.xlsx` spreadsheet
+
+These are the data from `02_Feb.xlsx`.
+I think these data were collated by One.
+
+```{r}
+main_tbl <- readxl::read_xlsx(
+  projr::projr_path_get(
+    "data-raw-private", "02_Feb.xlsx"
+  )
+)
+```
+
+These are the vaccine and protocol combinations for which we have information here:
+
+```{r}
+main_tbl |>
+  dplyr::group_by(`Protocol ID`, Vaccine) |>
+  dplyr::slice(1) |>
+  dplyr::ungroup() |>
+  dplyr::select(`Protocol ID`, Vaccine)
+```
+
+## Aeras402
+
+This is for protocol `003` (NHREC no. 1381).
+
+```{r}
+aeras_tbl <- main_tbl |>
+  dplyr::filter(`Protocol ID` == "402.003")
+aeras_tbl_pid <- aeras_tbl |>
+  dplyr::group_by(PatientID) |>
+  dplyr::slice(1) |>
+  dplyr::select(PatientID) |>
+  dplyr::ungroup()
+aeras_tbl_pid
+```
+
+There are nine here and nine in the 2019 paper, so this seems correct.
+
+```{r}
+readr::write_csv(
+  aeras_tbl,
+  projr::projr_path_get(
+    "output-private", "unanonymised_pids",
+    "003-Aeras402.csv"
+  )
+)
+```
+
+## H56
+
+This is for protocol `402.032`.
+
+```{r}
+h56_tbl <- main_tbl |>
+  dplyr::filter(`Protocol ID` == "402.032")
+h56_tbl_pid <- h56_tbl |>
+  dplyr::group_by(PatientID) |>
+  dplyr::slice(1) |>
+  dplyr::select(PatientID) |>
+  dplyr::ungroup()
+h56_tbl_pid
+```
+
+There are only 8 subjects here, and used 27 in the 2019 paper (15 uninfected and 12 infected), so we won't save this one (as per conversation with Tom).
+
+## M72
+
+### GSK.010
+
+This is for protocol `GSK.010`.
+
+```{r}
+gsk_tbl <- main_tbl |>
+  dplyr::filter(`Protocol ID` == "GSK.010")
+gsk_tbl_pid <- gsk_tbl |>
+  dplyr::group_by(PatientID) |>
+  dplyr::slice(1) |>
+  dplyr::select(PatientID) |>
+  dplyr::ungroup()
+gsk_tbl_pid
+```
+
+```{r}
+readr::write_csv(
+  gsk_tbl_pid,
+  projr::projr_path_get(
+    "output-private", "unanonymised_pids", "GSK.010-M72.csv"
+  )
+)
+```
+
+### GSK.012
+
+This is for protocol `GSK.012`.
+
+```{r}
+gsk_tbl <- main_tbl |>
+  dplyr::filter(`Protocol ID` == "GSK.012")
+gsk_tbl_pid <- gsk_tbl |>
+  dplyr::group_by(PatientID) |>
+  dplyr::slice(1) |>
+  dplyr::select(PatientID) |>
+  dplyr::ungroup()
+gsk_tbl_pid
+```
+
+```{r}
+readr::write_csv(
+  gsk_tbl_pid,
+  projr::projr_path_get(
+    "output-private", "unanonymised_pids",
+    "GSK.012-M72.csv"
+  )
+)
+```
+
+## MVA85A
+
+### TB008
+
+This is for protocol `TB008`.
+
+```{r}
+mva_tbl <- main_tbl |>
+  dplyr::filter(`Protocol ID` == "MVA.008")
+mva_tbl_pid <- mva_tbl |>
+  dplyr::group_by(PatientID) |>
+  dplyr::slice(1) |>
+  dplyr::select(PatientID) |>
+  dplyr::ungroup()
+mva_tbl_pid
+```
+
+```{r}
+readr::write_csv(
+  mva_tbl_pid,
+  projr::projr_path_get(
+    "output-private", "unanonymised_pids",
+    "TB008-MVA85A.csv"
+  )
+)
+```
+
+### MVA.011
+
+This is for protocol `TB011`.
+
+```{r}
+mva_tbl <- main_tbl |>
+  dplyr::filter(`Protocol ID` == "MVA.011")
+mva_tbl_pid <- mva_tbl |>
+  dplyr::group_by(PatientID) |>
+  dplyr::slice(1) |>
+  dplyr::select(PatientID) |>
+  dplyr::ungroup()
+mva_tbl_pid
+```
+
+```{r}
+readr::write_csv(
+  mva_tbl_pid,
+  projr::projr_path_get(
+    "output-private", "unanonymised_pids",
+    "TB011-MVA85A.csv"
+  ),
+)
+```
+
+## BCG
+
+This is for protocol `TBRU`.
+
+```{r}
+bcg_tbl <- main_tbl |>
+  dplyr::filter(`Protocol ID` == "TBRU")
+bcg_tbl_pid <- bcg_tbl |>
+  dplyr::group_by(PatientID) |>
+  dplyr::slice(1) |>
+  dplyr::select(PatientID) |>
+  dplyr::ungroup()
+bcg_tbl_pid
+```
+
+```{r}
+readr::write_csv(
+  bcg_tbl_pid,
+  projr::projr_path_get(
+    "output-private", "unanonymised_pids",
+    "TBRU-BCG.csv"
+  ),
+)
+```
+
+## H56
+
+This is for protocol `C-035-456`.
+
+```{r}
+h56_tbl <- readxl::read_xlsx(
+  projr::projr_path_get(
+    "data-raw-private", "161115_All H56-035 data.xlsx"
+  )
+)
+```
+
+Okay, the grouping information is a bit complicated. Overall, we want:
+
+- those given 5 micrograms twice
+- 15 uninfected and 12 infected
+
+So, that is:
+
+- group 1 with `Dose` 5 for uninfected
+- group 3 (removing the Placebo entries)
+
+Here we go:
+
+```{r}
+h56_tbl_uninf <- h56_tbl |>
+  dplyr::filter(
+    Group == 1, Dose == 5
+  )
+h56_tbl_uninf_pid <- h56_tbl_uninf |>
+  dplyr::group_by(PTID) |>
+  dplyr::slice(1) |>
+  dplyr::select(PTID) |>
+  dplyr::ungroup()
+h56_tbl_uninf_pid
+```
+
+```{r}
+h56_tbl_inf <- h56_tbl |>
+  dplyr::filter(
+    Group == 3, `Vaccine/Placebo` == "vaccine"
+  )
+h56_tbl_inf_pid <- h56_tbl_inf |>
+  dplyr::group_by(PTID) |>
+  dplyr::slice(1) |>
+  dplyr::select(PTID) |>
+  dplyr::ungroup()
+h56_tbl_inf_pid
+```
+
+These are correct, so we'll merge them and save them.
+
+```{r}
+h56_tbl <- dplyr::bind_rows(
+  h56_tbl_uninf_pid,
+  h56_tbl_inf_pid
+)
+readr::write_csv(
+  h56_tbl,
+  projr::projr_path_get(
+    "output-private", "unanonymised_pids",
+    "C-035-456-H56.csv"
+  ),
+)
+```
+
+# H1
+
+## Bool/Total sheets
+
+This is for protocol `THYB-04`.
+
+```{r}
+h1_tbl_bool <- readr::read_delim(
+  projr::projr_path_get("data-raw-private", "H1 THYB04-Cyto Boolean Freq_Merged.txt"), delim = "\t"
+)
+h1_tbl_bool_pid <- h1_tbl_bool |>
+  dplyr::group_by(SubjectID) |>
+  dplyr::slice(1) |>
+  dplyr::select(SubjectID) |>
+  dplyr::ungroup()
+h1_tbl_bool_sample <- h1_tbl_bool |>
+  dplyr::group_by(SubjectID, `$FIL`, Sample) |>
+  dplyr::slice(1) |>
+  dplyr::select(SubjectID, `$FIL`) |>
+  dplyr::ungroup()
+
+h1_tbl_total <- readr::read_delim(
+  projr::projr_path_get("data-raw-private", "H1 THYB04-Total Cytok Freq_Merged.txt"), delim = "\t"
+)
+h1_tbl_total_pid <- h1_tbl_total |>
+  dplyr::group_by(SubjectID) |>
+  dplyr::slice(1) |>
+  dplyr::select(SubjectID) |>
+  dplyr::ungroup()
+h1_tbl_total_pid
+```
+
+There are 227 here, but this seems excessive, as we only want 58 (34 uninfected and 24 infected).
+
+## Main
+
+This is for protocol `THYB-04`.
+
+```{r}
+h1_tbl_main <- main_tbl |>
+  dplyr::filter(`Protocol ID` == "THYB-04")
+h1_tbl_main_pid <- h1_tbl_main |>
+  dplyr::group_by(PatientID) |>
+  dplyr::slice(1) |>
+  dplyr::select(PatientID) |>
+  dplyr::ungroup()
+h1_tbl_main_pid
+```
+
+## H1.Data.Stat.2015.04.14FL.xlsx sheet
+
+So, here we also have too many donor IDs - 218.
+However, we now have group information.
+
+So, as per the paper we had individuals who were vaccinated twice and who received the 15microgram dose.
+There are 60 of them who started and 59 of them who completed,
+as per the original paper.
+
+Here, we only have information for 56 pids, however, from group 1:
+
+```{r}
+h1_tbl_fl <- readxl::read_xlsx(
+  projr::projr_path_get(
+    "data-raw-private", "H1.Data.Stat.2015.04.14FL.xlsx"
+  )
+)
+h1_tbl_fl_pid <- h1_tbl_fl |>
+  dplyr::filter(
+    grepl("^Group 1", Group)
+  ) |>
+  dplyr::group_by(`Donor.ID`) |>
+  dplyr::slice(1) |>
+  dplyr::select(`Donor.ID`) |>
+  dplyr::ungroup()
+h1_tbl_fl_pid
+```
+
+## Resolving H1
+
+So, as per the paper we had individuals who were vaccinated twice and who received the 15microgram dose.
+There are 60 of them who started and 59 of them who completed,
+as per the original paper.
+
+From the `main_tbl` sheet, we have 58 donor IDs, which corresponds to how many were used in the 2019 paper (as per what the paper says, )
+
+In the `FL.xlsx` sheet, we have only 56 donor IDs.
+They are also prefixed by `ID0...` to have constant length.
+Let's check if they match otherwise.
+
+```{r}
+h1_vec_fl <- gsub("^ID", "", h1_tbl_fl_pid$`Donor.ID`) |>
+  as.numeric() |>
+  unique()
+h1_vec_main <- h1_tbl_main_pid$PatientID |>
+  as.numeric()
+```
+
+There seem to be mismatches between the two groups, that go deeper than just the FL sheet having two fewer entries.
+
+The `main` sheet has the following four entries extra:
+
+```{r}
+setdiff(h1_vec_main, h1_vec_fl)
+```
+
+If we see where the match up in the `FL` sheet, none of them appear in the `FL` spreadsheet:
+
+```{r}
+h1_tbl_fl |>
+  dplyr::filter(
+    `Donor.ID` %in%
+    c("ID0221", "ID0225", "ID0229", "ID0037")
+  )
+```
+
+These two IDs appear in the `FL` spreadsheet but not the main spreadsheet:
+
+```{r}
+setdiff(h1_vec_fl, h1_vec_main)
+```
+
+Now, we can compare to the first H1 spreadsheet:
+
+```{r}
+h1_vec_bool <- h1_tbl_bool_pid$SubjectID
+h1_vec_total <- h1_tbl_total_pid$SubjectID
+identical(h1_vec_bool |> sort(), h1_vec_total |> sort())
+```
+
+Both result in exactly the same PIDs, so we use just the one.
+
+Now, comparing `FL` and `main` to `bool`, we see that `FL` has the same two extra over `bool` and that `main` and `bool` are identical:
+
+```{r}
+setdiff(h1_vec_fl, h1_vec_bool)
+setdiff(h1_vec_main, h1_vec_bool)
+```
+
+Now we can compare to the processed data used in the paper:
+
+```{r}
+load("_data_raw/public/check/tmaxSub17ExcTbl.rda")
+data_check <- tmaxSub17ExcTbl
+data_check_vec <- data_check |>
+  dplyr::filter(grepl("^h1", ptid)) |>
+  dplyr::pull(ptid) |>
+  unique()
+data_check_vec <- gsub("^h1_", "", data_check_vec) |>
+  as.numeric() |>
+  unique()
+```
+
+Comparing, we see that they have completely different entries, indicating that the processed data was appropriately anonymised:
+
+```{r}
+setdiff(data_check_vec, h1_vec_main)
+setdiff(h1_vec_main, data_check_vec)
+```
+
+However, we see that both the processed data and the h1 data are the same length.
+
+Okay, so I think we take the PIDs from the `main` spreadsheet as correct, based on the following:
+
+- It matches perfectly with the `Bool`/`Total` spreadsheets.
+- It has the same number as both the paper itself and the processed data.
+- The `FL` datasheet largely confirms it, as it does have grouping information (group 1, two doses of 15 micrograms).
+  - It does, however, not match exactly. It is possible, however, that it was manually edited, thus inducing mistakes. It is not clear why the numbers are slightly different, however - perhaps not all samples were processed by then, seeing as it was 2015?
+
+I'll send Humphrey the data with the IDs as the numbers and the IDs made to have length six.
+
+```{r}
+h1_tbl_final <- tibble::tibble(pid = h1_vec_main)
+pid_long_vec <- vapply(h1_tbl_final$pid, function(x) {
+  n_rep <- 4 - nchar(x)
+  zero_chr <- rep(0, n_rep) |> paste0(collapse = "")
+  paste0("ID", zero_chr, x)
+}, character(1))
+h1_tbl_final <- h1_tbl_final |>
+  dplyr::mutate(
+    pid_long = pid_long_vec
+  )
+h1_tbl_final
+```
+
+```{r}
+readr::write_csv(
+  h1_tbl_final,
+  projr::projr_path_get(
+    "output-private", "unanonymised_pids",
+    "THYB-04-H1.csv"
+  ),
+)
+```

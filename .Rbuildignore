@@ -21,5 +21,11 @@
 ^_data_raw/public$
 ^_data_raw/private/
 ^_data_raw/private$
+^_output/private/
+^_output/private$
+^_output/public/
+^_output/public$
+^_data_raw/other/
+^_data_raw/other$
 # End of projr section
 

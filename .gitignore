@@ -12,6 +12,9 @@ _output/**
 _data_raw/public/**
 _data_raw/private/**
 _site/**
+_output/private/**
+_output/public/**
+_data_raw/other/**
 # End of projr section
 
 
