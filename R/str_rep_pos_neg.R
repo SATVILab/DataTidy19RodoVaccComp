@@ -9,11 +9,11 @@ str_rep_pos_neg_char <- function(char) {
 }
 
 str_rep_pos_neg_string <- function(string) {
-  laply(str_split(string, "", simplify = TRUE), function(char) str_rep_pos_neg_char(char)) %>%
+  plyr::laply(str_split(string, "", simplify = TRUE), function(char) str_rep_pos_neg_char(char)) %>%
     str_c(collapse = "")
 }
 
 #' @export
 str_rep_pos_neg <- function(string) {
-  laply(string, function(x) str_rep_pos_neg_string(x))
+  plyr::laply(string, function(x) str_rep_pos_neg_string(x))
 }

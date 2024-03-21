@@ -452,7 +452,7 @@ countFuncClosure <- function() {
 #' @export
 nameStim <- function(x) {
   x <- as.character(x)
-  laply(x, function(x) {
+  plyr::laply(x, function(x) {
     if (x == "1") {
       return("ag85b")
     }

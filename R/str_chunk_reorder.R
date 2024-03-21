@@ -101,7 +101,6 @@ str_chunk_reorder_string <- function(string, pattern, order) {
 #' str_chunk_reorder("GpTpIL2nIL17p", c("p", "n"), c(1, 3, 2, 4))
 #' str_chunk_reorder(c("GpTpIL2nIL17p", "GpTpIL2nIL17n"), c("p", "n"), c(1, 3, 2, 4))
 #' @export
-
 str_chunk_reorder <- function(string, pattern, order) {
   plyr::laply(string, function(x) {
     str_chunk_reorder_string(x, pattern, order)

@@ -3,6 +3,10 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^_projr-local\.yml$
+^\.gitpod\.yml$
+^\.devcontainer$
+^\.devcontainer/
+
 
 ^LICENSE\.md$
 ^README\.Rmd$
