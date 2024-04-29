@@ -1,5 +1,8 @@
 # CHANGELOG
 
+- *Minor* (v1.10.0): Miguel Julio Rodo (22:52:22)
+  - Add H1, H56 and MVA85A data with sex data merged
+
 - *Minor* (v1.9.0): Miguel Julio Rodo (10:22:21)
   - Archive and correctly upload (this time)
 
