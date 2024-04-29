@@ -1108,5 +1108,5 @@ UtilsDataRSV::view_cols(data_tidy_vacc_freq)
 ```
 
 ```{r}
-UtilsDataRSV::projr_use_data(data_tidy_vacc_freq, overwrite = TRUE)
+projr::projr_use_data(data_tidy_vacc_freq, overwrite = TRUE)
 ```
