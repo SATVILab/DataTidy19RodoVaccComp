@@ -15,4 +15,5 @@ LazyData: true
 Imports:
   dplyr,
   stringr,
-  openxlsx
+  openxlsx,
+  tidyr
